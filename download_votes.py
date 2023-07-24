@@ -4,7 +4,7 @@ import requests
 from bs4 import BeautifulSoup
 
 
-def download_votes_for_all_parliaments():
+def download_votes_for_all_parliaments(overwrite):
     # 58 to 65 inclusive
     # LVIII Legislatura (2000-2003) to LXV Legislatura (2021-2024)
     for parliament_index in range(58, 66):
@@ -18,7 +18,7 @@ def download_votes_for_all_parliaments():
             assert len(vote_links_in_period) > 0
 
             for vote_link in vote_links_in_period:
-                download_vote_link(vote_link)
+                download_vote_link(vote_link, overwrite=overwrite)
               
 
 def get_period_links_in_parliament(parliament_url):
@@ -73,7 +73,8 @@ def download_vote_link(vote_text_link, overwrite=False):
 
 if __name__ == '__main__':
 
-    download_votes_for_all_parliaments()
+    # overwrite=True to always download every file, even if already saved
+    download_votes_for_all_parliaments(overwrite=False)
 
     # or to test the pieces
 

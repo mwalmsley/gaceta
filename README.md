@@ -20,6 +20,8 @@ The server is quite unreliable - it seems to go through periods where any reques
 
 then try again later.
 
+Set `overwrite=True` in `download_votes.py` to always download every file, even if they already exist.
+
 ## Website file structure
 
 Plain text files are hosted on the server with urls like

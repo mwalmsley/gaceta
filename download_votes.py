@@ -69,21 +69,16 @@ def download_vote_link(vote_text_link, overwrite=False):
             # use latin-1 encoding, not the default utf-8, because of the accent characters e.g. ó
             # yay modern colonialism
             f.write(text_page.content.decode('latin-1'))
-        exit()
 
 
 if __name__ == '__main__':
 
     download_votes_for_all_parliaments()
 
+    # or to test the pieces
 
+    # period_folder_url = 'http://gaceta.diputados.gob.mx/voto64/'
+    # get_vote_links_in_period(period_folder_url)
 
-# if __name__ == '__main__':
-
-
-
-#     period_folder_url = 'http://gaceta.diputados.gob.mx/voto64/'
-#     download_all_sessions(period_folder_url)
-
-    # vote_text_link = 'http://gaceta.diputados.gob.mx/voto64/ordi11/LosVotos/'
-    # download_all_votes(vote_text_link)
+    # vote_text_url = 'http://gaceta.diputados.gob.mx/voto58/ordi11/voto1031_2.txt'
+    # download_vote_link(vote_text_url, overwrite=True)

@@ -81,10 +81,7 @@ def parse_vote_file(vote_file_loc):
 
 if __name__ == '__main__':
 
-    # vote_file_loc = 'data/example.csv'
-    # vote_file_loc = 'data/raw_vote_files/voto0116-1.txt'
-    # parse_vote_file(vote_file_loc)
-
     # e.g. data/raw/voto50/ordi11/voto1031_1.txt
     for vote_file_loc in glob.glob('data/raw/*/*/*.txt'):
         parse_vote_file(vote_file_loc)
+ 

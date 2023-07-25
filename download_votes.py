@@ -5,9 +5,9 @@ from bs4 import BeautifulSoup
 
 
 def download_votes_for_all_parliaments(overwrite):
-    # 58 to 65 inclusive
-    # LVIII Legislatura (2000-2003) to LXV Legislatura (2021-2024)
-    for parliament_index in range(58, 66):
+    # 60 to 65 inclusive
+    # LX Legislatura (2006-2009) to LXV Legislatura (2021-2024)
+    for parliament_index in range(60, 66):
         parliament_url = f'http://gaceta.diputados.gob.mx/voto{parliament_index}'
 
         period_links = get_period_links_in_parliament(parliament_url)
@@ -95,11 +95,17 @@ def download_vote_link(vote_text_link, overwrite=False):
         # yay modern colonialism
         text = text_page.content.decode('latin-1')
 
-        # deal with this one edge case where there's some weird prefixed text
+        # deal with a few edge cases
+
+        # deal with this edge case where there's some weird prefixed text
         # http://gaceta.diputados.gob.mx/voto60/ordi32/LosVotos/voto0312-8.txt
         if vote_text_link == 'http://gaceta.diputados.gob.mx/voto60/ordi32/LosVotos/voto0312-8.txt':
             # drop the first lines of weird prefix text
             text = '\n'.join(text.split('\n')[6:])
+
+        # deal with this edge case where the formatting is totally different
+        if vote_text_link == 'http://gaceta.diputados.gob.mx/voto60/ordi11/voto1017-1.txt':
+            return None  # skip
 
         # helpful to avoid when the server returns a page saying "error",
         # but technically with a 200 success code (silly server)
@@ -111,7 +117,7 @@ def download_vote_link(vote_text_link, overwrite=False):
 if __name__ == '__main__':
 
     # overwrite=True to always download every file, even if already saved
-    download_votes_for_all_parliaments(overwrite=False)
+    download_votes_for_all_parliaments(overwrite=True)
 
     # or to test the pieces
 
